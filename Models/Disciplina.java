@@ -14,8 +14,23 @@ public class Disciplina {
     }
 
     public void adicionarAluno(Aluno aluno) {
-        alunos[quantidadeAlunos] = aluno;
-        quantidadeAlunos++;
+        if (quantidadeAlunos < limiteAlunos) {
+            alunos[quantidadeAlunos] = aluno;
+            quantidadeAlunos++;
+        } else {
+            System.out.println("Limite de alunos atingido. Disciplina lotada!");
+        }
+    }
+
+    public void removerAluno(int matricula) {
+        for(Aluno aluno: alunos){
+            int i = 0;
+
+            if(aluno.getMatricula() == matricula) {
+                alunos[i] = null;
+                quantidadeAlunos--;
+            }
+        }
     }
 
     public Aluno[] getAlunos() {

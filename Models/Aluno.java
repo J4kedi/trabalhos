@@ -5,18 +5,34 @@ import java.util.List;
 
 public class Aluno {
     private String nome;
-    private String matricula;
+    private int matricula;
+    private static List<Integer> matriculas = new ArrayList<>();
     private static List<Disciplina> disciplinas = new ArrayList<>();
+
+    public Aluno(String nome) {
+        this.nome = nome;
+        gerarMatricula();
+    }
 
     public String getNome() {
         return nome;
+    }
+
+    public void gerarMatricula() {
+        matricula = (int) (Math.random() * 10000);
+
+        if (matriculas.contains(matricula)) {
+            gerarMatricula();
+        }
+
+        matriculas.add(matricula);
     }
 
     public static List<Disciplina> getDisciplinas() {
         return disciplinas;
     }
 
-    public String getMatricula() {
+    public int getMatricula() {
         return matricula;
     }
 }
