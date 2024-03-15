@@ -1,5 +1,8 @@
 package Models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Disciplina {
     private String nome;
     private int cargaHoraria;
@@ -18,6 +21,9 @@ public class Disciplina {
             for(int i = 0; i < limiteAlunos; i++) {
                 if(alunos[i] == null) {
                     alunos[i] = aluno;
+
+                    aluno.adcionarDisciplina(this);
+                    break;
                 }
             }
             System.out.println("Aluno cadastrado com sucesso!");
@@ -37,9 +43,14 @@ public class Disciplina {
         }
     }
 
-    public Aluno[] getAlunos() {
-        System.out.println(alunos);
-        return alunos;
+    public List<Aluno> getAlunos() {
+        List<Aluno> listaAlunos = new ArrayList<>();
+
+        for (Aluno aluno : alunos) {
+            listaAlunos.add(aluno);
+        }
+
+        return listaAlunos;
     }
 
     public Professor getProfessor() {
@@ -60,5 +71,10 @@ public class Disciplina {
 
     public int getQuantidadeAlunos() {
         return quantidadeAlunos;
+    }
+
+    @Override
+    public String toString() {
+        return "Discisplina: " + nome;
     }
 }

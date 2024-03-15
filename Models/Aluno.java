@@ -13,13 +13,9 @@ public class Aluno {
         this.nome = nome;
         gerarMatricula();
     }
-
-    public String getNome() {
-        return nome;
-    }
-
+    
     public void gerarMatricula() {
-        matricula = (int) (Math.random() * 10000);
+        matricula = (int) (Math.random() * 1000000);
 
         if (matriculas.contains(matricula)) {
             gerarMatricula();
@@ -27,6 +23,15 @@ public class Aluno {
 
         matriculas.add(matricula);
     }
+
+    public void adcionarDisciplina(Disciplina disciplina) {
+        disciplinas.add(disciplina);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
 
     public static List<Disciplina> getDisciplinas() {
         return disciplinas;

@@ -14,7 +14,7 @@ public class Professor {
     }
     
     public void gerarCodRH(){
-        codRH = (int) (Math.random() * 100);
+        codRH = (int) (Math.random() * 1000000);
 
         if (codigosRH.contains(codRH)){
             gerarCodRH();
