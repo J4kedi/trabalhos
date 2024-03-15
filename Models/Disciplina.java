@@ -15,8 +15,12 @@ public class Disciplina {
 
     public void adicionarAluno(Aluno aluno) {
         if (quantidadeAlunos < limiteAlunos) {
-            alunos[quantidadeAlunos] = aluno;
-            quantidadeAlunos++;
+            for(int i = 0; i < limiteAlunos; i++) {
+                if(alunos[i] == null) {
+                    alunos[i] = aluno;
+                }
+            }
+            System.out.println("Aluno cadastrado com sucesso!");
         } else {
             System.out.println("Limite de alunos atingido. Disciplina lotada!");
         }
