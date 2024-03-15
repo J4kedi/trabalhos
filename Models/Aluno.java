@@ -35,4 +35,9 @@ public class Aluno {
     public int getMatricula() {
         return matricula;
     }
+
+    @Override
+    public String toString() {
+        return "Nome: " + nome;
+    }
 }

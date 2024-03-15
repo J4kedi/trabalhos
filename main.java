@@ -1,3 +1,4 @@
+import Models.Aluno;
 import Models.Disciplina;
 import Models.Professor;
 
@@ -6,9 +7,13 @@ public class main {
         Disciplina matematica = new Disciplina("matematica", 80);
         Professor jorge = new Professor("Jorge");
         Professor maicris = new Professor("maicris");
+        Aluno kauan = new Aluno("Kauan");
 
         System.out.println(jorge.getCodRH());
         System.out.println(Professor.getCodigosRH());
 
+
+        matematica.adicionarAluno(kauan);
+        System.out.println(kauan.getMatricula() + "\n" +  matematica.getAlunos());
     }
 }

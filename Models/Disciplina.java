@@ -38,6 +38,7 @@ public class Disciplina {
     }
 
     public Aluno[] getAlunos() {
+        System.out.println(alunos);
         return alunos;
     }
 
