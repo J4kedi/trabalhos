@@ -7,16 +7,24 @@ public class Disciplina {
     private int cargaHoraria;
     private Professor professor;
     private static int limiteAlunos = 10;
-    private int quantidadeAlunos = 0;
     private HashSet<Aluno> alunos = new HashSet<Aluno>();
 
-    public Disciplina(String nome, int cargaHoraria) {
+    public Disciplina(String nome, int cargaHoraria, Professor professor){
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
+        if (professor.getCodRH() != 0) {
+            this.professor = professor;
+        } else {
+            throw new IllegalArgumentException("Erro: Professor precisa ser contratado primeiro!");
+        }
     }
 
     public void adicionarAluno(Aluno aluno) {
-        if (quantidadeAlunos < limiteAlunos) {
+        if (aluno.getMatricula() == 0) {
+            throw new IllegalArgumentException("Erro: Aluno precisa ser matriculado primeiro!");
+        }
+
+        if (alunos.size() < limiteAlunos) {
             alunos.add(aluno);
             aluno.adcionarDisciplina(this);
 
@@ -26,10 +34,20 @@ public class Disciplina {
         }
     }
 
-    public void removerAluno(int matricula) {
-        alunos.removeIf(aluno -> aluno.getMatricula() == matricula);
-        quantidadeAlunos--;
+    public void removerAluno(Aluno aluno) {
+        alunos.remove(aluno);
         System.out.println("Aluno removido com sucesso!");
+    }
+
+    public void substituirProfessor(Professor professor){
+        this.professor = professor;
+    }
+
+    public void imprimirInfo() {
+        System.out.print("\n--------INFO DISCIPLINA--------\n");
+        System.out.print(toString() + "\nProfessor: " + professor.getNome() + "\n");
+        System.out.println("Alunos: " + alunos);
+        System.out.print("-------------------------------\n\n");
     }
 
     public HashSet<Aluno> getAlunos() {
@@ -52,12 +70,8 @@ public class Disciplina {
         return limiteAlunos;
     }
 
-    public int getQuantidadeAlunos() {
-        return quantidadeAlunos;
-    }
-
     @Override
     public String toString() {
-        return "Discisplina: " + nome;
+        return "Disciplina: " + nome;
     }
 }
