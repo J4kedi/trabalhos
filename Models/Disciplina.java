@@ -1,5 +1,7 @@
 package Models;
 
+import java.util.Arrays;
+
 public class Disciplina {
     private String nome;
     private int cargaHoraria;
