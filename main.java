@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 import Models.Aluno;
 import Models.Disciplina;
 import Models.Professor;
@@ -15,12 +12,13 @@ public class main {
         System.out.println(jorge.getCodRH());
         System.out.println(Professor.getCodigosRH());
 
-
+        System.out.println(maicris.getNome());
         matematica.adicionarAluno(kauan);
+
         System.out.println(kauan.getMatricula());
+        System.out.println(Aluno.getDisciplinas());
 
         System.out.println(matematica.getAlunos());
 
-        System.out.println(Aluno.getDisciplinas());
     }
 }

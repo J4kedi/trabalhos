@@ -1,7 +1,6 @@
 package Models;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 public class Disciplina {
     private String nome;
@@ -9,7 +8,7 @@ public class Disciplina {
     private Professor professor;
     private static int limiteAlunos = 10;
     private int quantidadeAlunos = 0;
-    private Aluno alunos[] = new Aluno[limiteAlunos];
+    private HashSet<Aluno> alunos = new HashSet<Aluno>();
 
     public Disciplina(String nome, int cargaHoraria) {
         this.nome = nome;
@@ -18,14 +17,9 @@ public class Disciplina {
 
     public void adicionarAluno(Aluno aluno) {
         if (quantidadeAlunos < limiteAlunos) {
-            for(int i = 0; i < limiteAlunos; i++) {
-                if(alunos[i] == null) {
-                    alunos[i] = aluno;
+            alunos.add(aluno);
+            aluno.adcionarDisciplina(this);
 
-                    aluno.adcionarDisciplina(this);
-                    break;
-                }
-            }
             System.out.println("Aluno cadastrado com sucesso!");
         } else {
             System.out.println("Limite de alunos atingido. Disciplina lotada!");
@@ -33,24 +27,13 @@ public class Disciplina {
     }
 
     public void removerAluno(int matricula) {
-        for(Aluno aluno: alunos){
-            int i = 0;
-
-            if(aluno.getMatricula() == matricula) {
-                alunos[i] = null;
-                quantidadeAlunos--;
-            }
-        }
+        alunos.removeIf(aluno -> aluno.getMatricula() == matricula);
+        quantidadeAlunos--;
+        System.out.println("Aluno removido com sucesso!");
     }
 
-    public List<Aluno> getAlunos() {
-        List<Aluno> listaAlunos = new ArrayList<>();
-
-        for (Aluno aluno : alunos) {
-            listaAlunos.add(aluno);
-        }
-
-        return listaAlunos;
+    public HashSet<Aluno> getAlunos() {
+        return alunos;
     }
 
     public Professor getProfessor() {

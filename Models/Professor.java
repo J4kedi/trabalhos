@@ -1,12 +1,11 @@
 package Models;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 public class Professor {
     private String nome;
     private int codRH;
-    private static List<Integer> codigosRH = new ArrayList<>();
+    private static HashSet<Integer> codigosRH = new HashSet<>();
 
     public Professor(String nome) {
         this.nome = nome;
@@ -14,13 +13,11 @@ public class Professor {
     }
     
     public void gerarCodRH(){
-        codRH = (int) (Math.random() * 1000000);
-
-        if (codigosRH.contains(codRH)){
-            gerarCodRH();
-        }
+        do {
+            codRH = (int) (Math.random() * 1000000);
+        } while (codigosRH.contains(codRH));
         
-        codigosRH.add(codRH);
+        codigosRH.add(codRH);        
     }
 
     public String getNome() {
@@ -31,7 +28,7 @@ public class Professor {
         return codRH;
     }
 
-    public static List<Integer> getCodigosRH() {
-        return Professor.codigosRH;
+    public static HashSet<Integer> getCodigosRH() {
+        return codigosRH;
     }
 }

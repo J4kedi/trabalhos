@@ -1,13 +1,12 @@
 package Models;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 public class Aluno {
     private String nome;
-    private int matricula;
-    private static List<Integer> matriculas = new ArrayList<>();
-    private static List<Disciplina> disciplinas = new ArrayList<>();
+    private int matricula; 
+    private static HashSet<Integer> matriculas = new HashSet<>();
+    private static HashSet<Disciplina> disciplinas = new HashSet<>();
 
     public Aluno(String nome) {
         this.nome = nome;
@@ -15,12 +14,10 @@ public class Aluno {
     }
     
     public void gerarMatricula() {
-        matricula = (int) (Math.random() * 1000000);
-
-        if (matriculas.contains(matricula)) {
-            gerarMatricula();
-        }
-
+        do {
+            matricula = (int) (Math.random() * 1000000);
+        } while (matriculas.contains(matricula));
+        
         matriculas.add(matricula);
     }
 
@@ -33,7 +30,7 @@ public class Aluno {
     }
 
 
-    public static List<Disciplina> getDisciplinas() {
+    public static HashSet<Disciplina> getDisciplinas() {
         return disciplinas;
     }
 
